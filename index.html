@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Arai2</title>
+  <title>Arai3</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -5258,15 +5258,15 @@ var $elm$core$Task$perform = F2(
 var $elm$browser$Browser$element = _Browser_element;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$Arai2$init = function (_v0) {
+var $author$project$Arai3$init = function (_v0) {
 	return _Utils_Tuple2(
 		{
 			conf: _List_fromArray(
 				[
-					{d: 4, x: 3, y: 2},
-					{d: 4, x: 2, y: 2},
-					{d: 2, x: 2, y: 3},
-					{d: 2, x: 1, y: 1}
+					{d: 4, oldx: 0, oldy: 0, x: 3, y: 2},
+					{d: 4, oldx: 0, oldy: 0, x: 2, y: 2},
+					{d: 2, oldx: 0, oldy: 0, x: 2, y: 3},
+					{d: 2, oldx: 0, oldy: 0, x: 1, y: 1}
 				]),
 			startAt: {x: 0, y: 0}
 		},
@@ -5274,10 +5274,10 @@ var $author$project$Arai2$init = function (_v0) {
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Arai2$subscriptions = function (model) {
+var $author$project$Arai3$subscriptions = function (model) {
 	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Arai2$RandAdd = function (a) {
+var $author$project$Arai3$RandAdd = function (a) {
 	return {$: 'RandAdd', a: a};
 };
 var $elm$core$List$append = F2(
@@ -5337,15 +5337,15 @@ var $elm$core$Maybe$withDefault = F2(
 			return _default;
 		}
 	});
-var $author$project$Arai2$rmDup = function (line) {
+var $author$project$Arai3$rmDup = function (line) {
 	var t = A2($elm$core$List$drop, 1, line);
 	var n = A2(
 		$elm$core$Maybe$withDefault,
-		{d: 1, x: 0, y: 0},
+		{d: 1, oldx: 0, oldy: 0, x: 0, y: 0},
 		$elm$core$List$head(t));
 	var h = A2(
 		$elm$core$Maybe$withDefault,
-		{d: 0, x: 0, y: 0},
+		{d: 0, oldx: 0, oldy: 0, x: 0, y: 0},
 		$elm$core$List$head(line));
 	return (!$elm$core$List$length(line)) ? _List_Nil : ((!$elm$core$List$length(t)) ? _List_fromArray(
 		[h]) : ((_Utils_eq(h.d, n.d) && ($elm$core$Basics$abs((h.x - n.x) + (h.y - n.y)) === 1)) ? $elm$core$List$concat(
@@ -5357,19 +5357,19 @@ var $author$project$Arai2$rmDup = function (line) {
 					h,
 					{d: 2 * h.d})
 				]),
-				$author$project$Arai2$rmDup(
+				$author$project$Arai3$rmDup(
 				A2($elm$core$List$drop, 1, t))
 			])) : $elm$core$List$concat(
 		_List_fromArray(
 			[
 				_List_fromArray(
 				[h]),
-				$author$project$Arai2$rmDup(t)
+				$author$project$Arai3$rmDup(t)
 			]))));
 };
 var $elm$core$List$sortBy = _List_sortBy;
-var $author$project$Arai2$moveDown = function (col) {
-	var sorted = $author$project$Arai2$rmDup(
+var $author$project$Arai3$moveDown = function (col) {
+	var sorted = $author$project$Arai3$rmDup(
 		$elm$core$List$reverse(
 			A2(
 				$elm$core$List$sortBy,
@@ -5383,7 +5383,7 @@ var $author$project$Arai2$moveDown = function (col) {
 			function (idx, digit) {
 				return _Utils_update(
 					digit,
-					{y: 3 - idx});
+					{oldx: digit.x, oldy: digit.y, y: 3 - idx});
 			}),
 		sorted);
 };
@@ -5398,7 +5398,7 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $author$project$Arai2$splitX = function (conf) {
+var $author$project$Arai3$splitX = function (conf) {
 	return A2(
 		$elm$core$Debug$log,
 		'splitx:',
@@ -5414,15 +5414,15 @@ var $author$project$Arai2$splitX = function (conf) {
 			},
 			A2($elm$core$List$range, 0, 3)));
 };
-var $author$project$Arai2$down = function (conf) {
+var $author$project$Arai3$down = function (conf) {
 	return A2(
 		$elm$core$Debug$log,
 		'down:',
 		$elm$core$List$concat(
 			A2(
 				$elm$core$List$map,
-				$author$project$Arai2$moveDown,
-				$author$project$Arai2$splitX(conf))));
+				$author$project$Arai3$moveDown,
+				$author$project$Arai3$splitX(conf))));
 };
 var $elm$random$Random$Generate = function (a) {
 	return {$: 'Generate', a: a};
@@ -5570,8 +5570,8 @@ var $elm$random$Random$int = F2(
 				}
 			});
 	});
-var $author$project$Arai2$moveLeft = function (row) {
-	var sorted = $author$project$Arai2$rmDup(
+var $author$project$Arai3$moveLeft = function (row) {
+	var sorted = $author$project$Arai3$rmDup(
 		A2(
 			$elm$core$List$sortBy,
 			function ($) {
@@ -5584,11 +5584,11 @@ var $author$project$Arai2$moveLeft = function (row) {
 			function (idx, digit) {
 				return _Utils_update(
 					digit,
-					{x: idx});
+					{oldx: digit.x, oldy: digit.y, x: idx});
 			}),
 		sorted);
 };
-var $author$project$Arai2$splitY = function (conf) {
+var $author$project$Arai3$splitY = function (conf) {
 	return A2(
 		$elm$core$Debug$log,
 		'splity:',
@@ -5604,18 +5604,18 @@ var $author$project$Arai2$splitY = function (conf) {
 			},
 			A2($elm$core$List$range, 0, 3)));
 };
-var $author$project$Arai2$left = function (conf) {
+var $author$project$Arai3$left = function (conf) {
 	return A2(
 		$elm$core$Debug$log,
 		'left:',
 		$elm$core$List$concat(
 			A2(
 				$elm$core$List$map,
-				$author$project$Arai2$moveLeft,
-				$author$project$Arai2$splitY(conf))));
+				$author$project$Arai3$moveLeft,
+				$author$project$Arai3$splitY(conf))));
 };
 var $elm$core$Basics$ge = _Utils_ge;
-var $author$project$Arai2$find = F2(
+var $author$project$Arai3$find = F2(
 	function (coord, model) {
 		return $elm$core$List$length(
 			A2(
@@ -5626,7 +5626,7 @@ var $author$project$Arai2$find = F2(
 				model.conf)) >= 1;
 	});
 var $elm$core$Basics$not = _Basics_not;
-var $author$project$Arai2$put = F3(
+var $author$project$Arai3$put = F3(
 	function (digit, place, model) {
 		var full = $elm$core$List$concat(
 			A2(
@@ -5643,7 +5643,7 @@ var $author$project$Arai2$put = F3(
 		var rest = A2(
 			$elm$core$List$filter,
 			function (c) {
-				return !A2($author$project$Arai2$find, c, model);
+				return !A2($author$project$Arai3$find, c, model);
 			},
 			full);
 		var coord = A2(
@@ -5656,12 +5656,12 @@ var $author$project$Arai2$put = F3(
 			{
 				conf: A2(
 					$elm$core$List$cons,
-					{d: digit, x: coord.x, y: coord.y},
+					{d: digit, oldx: 0, oldy: 0, x: coord.x, y: coord.y},
 					model.conf)
 			});
 	});
-var $author$project$Arai2$moveRight = function (row) {
-	var sorted = $author$project$Arai2$rmDup(
+var $author$project$Arai3$moveRight = function (row) {
+	var sorted = $author$project$Arai3$rmDup(
 		$elm$core$List$reverse(
 			A2(
 				$elm$core$List$sortBy,
@@ -5675,26 +5675,26 @@ var $author$project$Arai2$moveRight = function (row) {
 			function (idx, digit) {
 				return _Utils_update(
 					digit,
-					{x: 3 - idx});
+					{oldx: digit.x, oldy: digit.y, x: 3 - idx});
 			}),
 		sorted);
 };
-var $author$project$Arai2$right = function (conf) {
+var $author$project$Arai3$right = function (conf) {
 	return A2(
 		$elm$core$Debug$log,
 		'right:',
 		$elm$core$List$concat(
 			A2(
 				$elm$core$List$map,
-				$author$project$Arai2$moveRight,
-				$author$project$Arai2$splitY(conf))));
+				$author$project$Arai3$moveRight,
+				$author$project$Arai3$splitY(conf))));
 };
 var $elm$core$Tuple$second = function (_v0) {
 	var y = _v0.b;
 	return y;
 };
-var $author$project$Arai2$moveUp = function (col) {
-	var sorted = $author$project$Arai2$rmDup(
+var $author$project$Arai3$moveUp = function (col) {
+	var sorted = $author$project$Arai3$rmDup(
 		A2(
 			$elm$core$List$sortBy,
 			function ($) {
@@ -5707,21 +5707,21 @@ var $author$project$Arai2$moveUp = function (col) {
 			function (idx, digit) {
 				return _Utils_update(
 					digit,
-					{y: idx});
+					{oldx: digit.x, oldy: digit.y, y: idx});
 			}),
 		sorted);
 };
-var $author$project$Arai2$up = function (conf) {
+var $author$project$Arai3$up = function (conf) {
 	return A2(
 		$elm$core$Debug$log,
 		'up:',
 		$elm$core$List$concat(
 			A2(
 				$elm$core$List$map,
-				$author$project$Arai2$moveUp,
-				$author$project$Arai2$splitX(conf))));
+				$author$project$Arai3$moveUp,
+				$author$project$Arai3$splitX(conf))));
 };
-var $author$project$Arai2$update = F2(
+var $author$project$Arai3$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
 			case 'Up':
@@ -5729,65 +5729,65 @@ var $author$project$Arai2$update = F2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$up(model.conf)
+							conf: $author$project$Arai3$up(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$up(model.conf)))));
+								$author$project$Arai3$up(model.conf)))));
 			case 'Down':
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$down(model.conf)
+							conf: $author$project$Arai3$down(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$down(model.conf)))));
+								$author$project$Arai3$down(model.conf)))));
 			case 'Right':
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$right(model.conf)
+							conf: $author$project$Arai3$right(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$right(model.conf)))));
+								$author$project$Arai3$right(model.conf)))));
 			case 'Left':
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$left(model.conf)
+							conf: $author$project$Arai3$left(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$left(model.conf)))));
+								$author$project$Arai3$left(model.conf)))));
 			case 'RandAdd':
 				var place = msg.a;
 				return _Utils_Tuple2(
-					A3($author$project$Arai2$put, 2, place, model),
+					A3($author$project$Arai3$put, 2, place, model),
 					$elm$core$Platform$Cmd$none);
 			case 'PDown':
 				var event = msg.a;
@@ -5814,61 +5814,61 @@ var $author$project$Arai2$update = F2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$right(model.conf)
+							conf: $author$project$Arai3$right(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$right(model.conf))))) : (((vx < 0) && ((_Utils_cmp(vx, vy) < 0) && (_Utils_cmp(vy, -vx) < 0))) ? _Utils_Tuple2(
+								$author$project$Arai3$right(model.conf))))) : (((vx < 0) && ((_Utils_cmp(vx, vy) < 0) && (_Utils_cmp(vy, -vx) < 0))) ? _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$left(model.conf)
+							conf: $author$project$Arai3$left(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$left(model.conf))))) : (((vy > 0) && ((_Utils_cmp(vy, vx) > 0) && (_Utils_cmp(vy, -vx) > 0))) ? _Utils_Tuple2(
+								$author$project$Arai3$left(model.conf))))) : (((vy > 0) && ((_Utils_cmp(vy, vx) > 0) && (_Utils_cmp(vy, -vx) > 0))) ? _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$down(model.conf)
+							conf: $author$project$Arai3$down(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$down(model.conf))))) : (((vy < 0) && ((_Utils_cmp(vy, vx) < 0) && (_Utils_cmp(vy, -vx) < 0))) ? _Utils_Tuple2(
+								$author$project$Arai3$down(model.conf))))) : (((vy < 0) && ((_Utils_cmp(vy, vx) < 0) && (_Utils_cmp(vy, -vx) < 0))) ? _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							conf: $author$project$Arai2$up(model.conf)
+							conf: $author$project$Arai3$up(model.conf)
 						}),
 					A2(
 						$elm$random$Random$generate,
-						$author$project$Arai2$RandAdd,
+						$author$project$Arai3$RandAdd,
 						A2(
 							$elm$random$Random$int,
 							1,
 							16 - $elm$core$List$length(
-								$author$project$Arai2$up(model.conf))))) : _Utils_Tuple2(model, $elm$core$Platform$Cmd$none))));
+								$author$project$Arai3$up(model.conf))))) : _Utils_Tuple2(model, $elm$core$Platform$Cmd$none))));
 		}
 	});
-var $author$project$Arai2$PDown = function (a) {
+var $author$project$Arai3$PDown = function (a) {
 	return {$: 'PDown', a: a};
 };
-var $author$project$Arai2$PUp = function (a) {
+var $author$project$Arai3$PUp = function (a) {
 	return {$: 'PUp', a: a};
 };
 var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
@@ -5879,7 +5879,7 @@ var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
 var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
 var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
 var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
-var $author$project$Arai2$cell = function (pos) {
+var $author$project$Arai3$cell = function (pos) {
 	return A2(
 		$elm$svg$Svg$rect,
 		_List_fromArray(
@@ -6043,19 +6043,971 @@ var $mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$onWithOptions = F3(
 				},
 				$mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$eventDecoder));
 	});
-var $author$project$Arai2$myOnDown = A2(
+var $author$project$Arai3$myOnDown = A2(
 	$mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$onWithOptions,
 	'pointerdown',
 	{preventDefault: true, stopPropagation: false});
 var $mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$defaultOptions = {preventDefault: true, stopPropagation: false};
 var $mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$onUp = A2($mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$onWithOptions, 'pointerup', $mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$defaultOptions);
-var $elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
-var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
-var $elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
+var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$duration_ = function (_v0) {
+	var d = _v0.a;
+	return d;
+};
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$String$concat = function (strings) {
+	return A2($elm$core$String$join, '', strings);
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$joinWith = function (f) {
+	return A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$map(f),
+		$elm$core$String$concat);
+};
+var $elm$core$Set$Set_elm_builtin = function (a) {
+	return {$: 'Set_elm_builtin', a: a};
+};
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
+var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
+var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
+var $elm$core$Dict$Black = {$: 'Black'};
+var $elm$core$Dict$RBNode_elm_builtin = F5(
+	function (a, b, c, d, e) {
+		return {$: 'RBNode_elm_builtin', a: a, b: b, c: c, d: d, e: e};
+	});
+var $elm$core$Dict$Red = {$: 'Red'};
+var $elm$core$Dict$balance = F5(
+	function (color, key, value, left, right) {
+		if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Red')) {
+			var _v1 = right.a;
+			var rK = right.b;
+			var rV = right.c;
+			var rLeft = right.d;
+			var rRight = right.e;
+			if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+				var _v3 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var lLeft = left.d;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Red,
+					key,
+					value,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					color,
+					rK,
+					rV,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, left, rLeft),
+					rRight);
+			}
+		} else {
+			if ((((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) && (left.d.$ === 'RBNode_elm_builtin')) && (left.d.a.$ === 'Red')) {
+				var _v5 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var _v6 = left.d;
+				var _v7 = _v6.a;
+				var llK = _v6.b;
+				var llV = _v6.c;
+				var llLeft = _v6.d;
+				var llRight = _v6.e;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Red,
+					lK,
+					lV,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, lRight, right));
+			} else {
+				return A5($elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
+			}
+		}
+	});
+var $elm$core$Basics$compare = _Utils_compare;
+var $elm$core$Dict$insertHelp = F3(
+	function (key, value, dict) {
+		if (dict.$ === 'RBEmpty_elm_builtin') {
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+		} else {
+			var nColor = dict.a;
+			var nKey = dict.b;
+			var nValue = dict.c;
+			var nLeft = dict.d;
+			var nRight = dict.e;
+			var _v1 = A2($elm$core$Basics$compare, key, nKey);
+			switch (_v1.$) {
+				case 'LT':
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						A3($elm$core$Dict$insertHelp, key, value, nLeft),
+						nRight);
+				case 'EQ':
+					return A5($elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
+				default:
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						nLeft,
+						A3($elm$core$Dict$insertHelp, key, value, nRight));
+			}
+		}
+	});
+var $elm$core$Dict$insert = F3(
+	function (key, value, dict) {
+		var _v0 = A3($elm$core$Dict$insertHelp, key, value, dict);
+		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+			var _v1 = _v0.a;
+			var k = _v0.b;
+			var v = _v0.c;
+			var l = _v0.d;
+			var r = _v0.e;
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+		} else {
+			var x = _v0;
+			return x;
+		}
+	});
+var $elm$core$Set$insert = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+	});
+var $elm$core$Set$fromList = function (list) {
+	return A3($elm$core$List$foldl, $elm$core$Set$insert, $elm$core$Set$empty, list);
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escapedChars_ = $elm$core$Set$fromList(
+	_List_fromArray(
+		[
+			_Utils_chr('.'),
+			_Utils_chr(' '),
+			_Utils_chr(','),
+			_Utils_chr('#'),
+			_Utils_chr('$'),
+			_Utils_chr('%'),
+			_Utils_chr('('),
+			_Utils_chr(')'),
+			_Utils_chr('&'),
+			_Utils_chr(';'),
+			_Utils_chr(':'),
+			_Utils_chr('\"'),
+			_Utils_chr('\''),
+			_Utils_chr('*'),
+			_Utils_chr('~'),
+			_Utils_chr('!'),
+			_Utils_chr('@'),
+			_Utils_chr('^'),
+			_Utils_chr('+'),
+			_Utils_chr('='),
+			_Utils_chr('/'),
+			_Utils_chr('?'),
+			_Utils_chr('>'),
+			_Utils_chr('<'),
+			_Utils_chr('['),
+			_Utils_chr(']'),
+			_Utils_chr('{'),
+			_Utils_chr('}'),
+			_Utils_chr('|'),
+			_Utils_chr('`')
+		]));
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1.$) {
+					case 'LT':
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 'EQ':
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
+var $elm$core$Dict$member = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$get, key, dict);
+		if (_v0.$ === 'Just') {
+			return true;
+		} else {
+			return false;
+		}
+	});
+var $elm$core$Set$member = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return A2($elm$core$Dict$member, key, dict);
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escapedChars = function (c) {
+	return !A2($elm$core$Set$member, c, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escapedChars_);
+};
+var $elm$core$String$filter = _String_filter;
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escape = $elm$core$String$filter($andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escapedChars);
+var $elm$core$Basics$round = _Basics_round;
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$rounded = F2(
+	function (n, val) {
+		return $elm$core$String$fromInt(
+			$elm$core$Basics$round(val) * n);
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$name = function (t) {
+	switch (t.$) {
+		case 'Translate':
+			switch (t.a.$) {
+				case 'Y':
+					var y_ = t.a.a;
+					return 'y' + A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 1, y_);
+				case 'X':
+					var x_ = t.a.a;
+					return 'x' + A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 1, x_);
+				default:
+					var _v1 = t.a;
+					var x_ = _v1.a;
+					var y_ = _v1.b;
+					return 'x' + (A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 1, x_) + ('y' + A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 1, y_)));
+			}
+		case 'Rotate':
+			var r_ = t.a;
+			return 'r' + A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 1, r_);
+		default:
+			var x_ = t.a;
+			var y_ = t.b;
+			return 'sx' + (A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 100, x_) + ('sy' + A2($andrewMacmurray$elm_simple_animation$Internal$Transform$rounded, 100, y_)));
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$rounded = F2(
+	function (n, val) {
+		return $elm$core$String$fromInt(
+			$elm$core$Basics$round(val * n));
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$name = function (prop) {
+	switch (prop.$) {
+		case 'Opacity':
+			var n = prop.a;
+			return 'o' + A2($andrewMacmurray$elm_simple_animation$Internal$Animation$Property$rounded, 100, n);
+		case 'Transform':
+			var t = prop.a;
+			return $andrewMacmurray$elm_simple_animation$Internal$Transform$name(t);
+		default:
+			var n = prop.a;
+			var p = prop.b;
+			return _Utils_ap(
+				$andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escape(n),
+				$andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escape(p));
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$frameName = function (_v0) {
+	var dur = _v0.a;
+	var props = _v0.b;
+	return 'f' + ($elm$core$String$fromInt(
+		$elm$core$Basics$round(dur)) + A2($andrewMacmurray$elm_simple_animation$Internal$Animation$joinWith, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$name, props));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$framesNames = $andrewMacmurray$elm_simple_animation$Internal$Animation$joinWith($andrewMacmurray$elm_simple_animation$Internal$Animation$frameName);
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$frames_ = function (_v0) {
+	var f = _v0.c;
+	return f;
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$isEmpty = function (anim) {
+	return !$andrewMacmurray$elm_simple_animation$Internal$Animation$duration_(anim);
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$iterationName = function (i) {
+	if (i.$ === 'Loop') {
+		return 'infinite';
+	} else {
+		var count = i.a;
+		return 'count-' + $elm$core$String$fromInt(count);
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Ease$toString = function (e) {
+	switch (e.$) {
+		case 'Cubic':
+			var a = e.a;
+			var b = e.b;
+			var c = e.c;
+			var d = e.d;
+			return 'cubic-bezier(' + (A2(
+				$elm$core$String$join,
+				',',
+				_List_fromArray(
+					[
+						$elm$core$String$fromFloat(a),
+						$elm$core$String$fromFloat(b),
+						$elm$core$String$fromFloat(c),
+						$elm$core$String$fromFloat(d)
+					])) + ')');
+		case 'Linear':
+			return 'linear';
+		case 'Ease':
+			return 'ease';
+		case 'EaseIn':
+			return 'ease-in';
+		case 'EaseOut':
+			return 'ease-out';
+		default:
+			return 'ease-in-out';
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$optionName = function (o) {
+	switch (o.$) {
+		case 'Delay':
+			var n = o.a;
+			return 'd' + $elm$core$String$fromInt(n);
+		case 'Ease':
+			var ease = o.a;
+			return $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$escape(
+				$andrewMacmurray$elm_simple_animation$Internal$Ease$toString(ease));
+		case 'Iteration':
+			var i = o.a;
+			return $andrewMacmurray$elm_simple_animation$Internal$Animation$iterationName(i);
+		case 'Yoyo':
+			return 'yoyo';
+		default:
+			return 'rev';
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$optionNames = $andrewMacmurray$elm_simple_animation$Internal$Animation$joinWith($andrewMacmurray$elm_simple_animation$Internal$Animation$optionName);
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$rawOptions_ = function (_v0) {
+	var o = _v0.b;
+	return o;
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$name_ = function (anim) {
+	return $andrewMacmurray$elm_simple_animation$Internal$Animation$isEmpty(anim) ? 'anim-empty' : ('anim-' + ($elm$core$String$fromInt(
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$duration_(anim)) + ($andrewMacmurray$elm_simple_animation$Internal$Animation$optionNames(
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$rawOptions_(anim)) + $andrewMacmurray$elm_simple_animation$Internal$Animation$framesNames(
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$frames_(anim)))));
+};
+var $elm$virtual_dom$VirtualDom$node = function (tag) {
+	return _VirtualDom_node(
+		_VirtualDom_noScript(tag));
+};
+var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
+var $andrewMacmurray$elm_simple_animation$Internal$Unit$ms = function (n) {
+	return $elm$core$String$fromInt(n) + 'ms';
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$animationDuration = function (anim) {
+	return $andrewMacmurray$elm_simple_animation$Internal$Unit$ms(
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$duration_(anim));
+};
+var $elm$core$List$maybeCons = F3(
+	function (f, mx, xs) {
+		var _v0 = f(mx);
+		if (_v0.$ === 'Just') {
+			var x = _v0.a;
+			return A2($elm$core$List$cons, x, xs);
+		} else {
+			return xs;
+		}
+	});
+var $elm$core$List$filterMap = F2(
+	function (f, xs) {
+		return A3(
+			$elm$core$List$foldr,
+			$elm$core$List$maybeCons(f),
+			_List_Nil,
+			xs);
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$collectOption = F2(
+	function (o, opts) {
+		switch (o.$) {
+			case 'Delay':
+				var ms = o.a;
+				return _Utils_update(
+					opts,
+					{
+						delay: $elm$core$Maybe$Just(ms)
+					});
+			case 'Iteration':
+				var i = o.a;
+				return _Utils_update(
+					opts,
+					{
+						iteration: $elm$core$Maybe$Just(i)
+					});
+			case 'Ease':
+				var e = o.a;
+				return _Utils_update(
+					opts,
+					{
+						timingFunction: $elm$core$Maybe$Just(e)
+					});
+			case 'Yoyo':
+				return _Utils_update(
+					opts,
+					{isYoyo: true});
+			default:
+				return _Utils_update(
+					opts,
+					{reversed: true});
+		}
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$defaults = {delay: $elm$core$Maybe$Nothing, isYoyo: false, iteration: $elm$core$Maybe$Nothing, reversed: false, timingFunction: $elm$core$Maybe$Nothing};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Count = function (a) {
+	return {$: 'Count', a: a};
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Loop = {$: 'Loop'};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$iterationForYoyo = function (opts) {
+	var _v0 = opts.iteration;
+	if (_v0.$ === 'Just') {
+		if (_v0.a.$ === 'Loop') {
+			var _v1 = _v0.a;
+			return $andrewMacmurray$elm_simple_animation$Internal$Animation$Loop;
+		} else {
+			var n = _v0.a.a;
+			return $andrewMacmurray$elm_simple_animation$Internal$Animation$Count(n * 2);
+		}
+	} else {
+		return $andrewMacmurray$elm_simple_animation$Internal$Animation$Count(2);
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$normalise = function (opts) {
+	return opts.isYoyo ? _Utils_update(
+		opts,
+		{
+			iteration: $elm$core$Maybe$Just(
+				$andrewMacmurray$elm_simple_animation$Internal$Animation$iterationForYoyo(opts))
+		}) : opts;
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$options_ = A2(
+	$elm$core$Basics$composeR,
+	$andrewMacmurray$elm_simple_animation$Internal$Animation$rawOptions_,
+	A2(
+		$elm$core$Basics$composeR,
+		A2($elm$core$List$foldl, $andrewMacmurray$elm_simple_animation$Internal$Animation$collectOption, $andrewMacmurray$elm_simple_animation$Internal$Animation$defaults),
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$normalise));
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderDirection = function (d) {
+	switch (d.$) {
+		case 'Alternate_':
+			return 'alternate';
+		case 'Reverse_':
+			return 'reverse';
+		default:
+			return 'alternate-reverse';
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderIteration = function (i) {
+	if (i.$ === 'Loop') {
+		return 'infinite';
+	} else {
+		var count = i.a;
+		return $elm$core$String$fromInt(count);
+	}
+};
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption = F2(
+	function (name, toProp) {
+		return $elm$core$Maybe$map(
+			function (x) {
+				return name + (': ' + toProp(x));
+			});
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$AlternateReverse_ = {$: 'AlternateReverse_'};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Alternate_ = {$: 'Alternate_'};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Reverse_ = {$: 'Reverse_'};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$toDirection = function (opts) {
+	return (opts.isYoyo && opts.reversed) ? $elm$core$Maybe$Just($andrewMacmurray$elm_simple_animation$Internal$Animation$AlternateReverse_) : (opts.reversed ? $elm$core$Maybe$Just($andrewMacmurray$elm_simple_animation$Internal$Animation$Reverse_) : (opts.isYoyo ? $elm$core$Maybe$Just($andrewMacmurray$elm_simple_animation$Internal$Animation$Alternate_) : $elm$core$Maybe$Nothing));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderOptions_ = function (opts) {
+	return _List_fromArray(
+		[
+			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-delay', $andrewMacmurray$elm_simple_animation$Internal$Unit$ms, opts.delay),
+			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-timing-function', $andrewMacmurray$elm_simple_animation$Internal$Ease$toString, opts.timingFunction),
+			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-iteration-count', $andrewMacmurray$elm_simple_animation$Internal$Animation$renderIteration, opts.iteration),
+			A3(
+			$andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption,
+			'animation-direction',
+			$andrewMacmurray$elm_simple_animation$Internal$Animation$renderDirection,
+			$andrewMacmurray$elm_simple_animation$Internal$Animation$toDirection(opts))
+		]);
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderOptions = A2(
+	$elm$core$Basics$composeR,
+	$andrewMacmurray$elm_simple_animation$Internal$Animation$options_,
+	A2(
+		$elm$core$Basics$composeR,
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$renderOptions_,
+		$elm$core$List$filterMap($elm$core$Basics$identity)));
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$classProperties = function (anim) {
+	return A2(
+		$elm$core$String$join,
+		';\n',
+		A2(
+			$elm$core$List$append,
+			_List_fromArray(
+				[
+					'animation-name: ' + $andrewMacmurray$elm_simple_animation$Internal$Animation$name_(anim),
+					'animation-duration: ' + $andrewMacmurray$elm_simple_animation$Internal$Animation$animationDuration(anim),
+					'animation-fill-mode: both'
+				]),
+			$andrewMacmurray$elm_simple_animation$Internal$Animation$renderOptions(anim)));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$classDefinition_ = function (anim) {
+	return '.' + ($andrewMacmurray$elm_simple_animation$Internal$Animation$name_(anim) + ('{\n' + ($andrewMacmurray$elm_simple_animation$Internal$Animation$classProperties(anim) + '\n};')));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Unit$pc = function (n) {
+	return $elm$core$String$fromFloat(n) + '%';
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$filterMaybes = $elm$core$List$filterMap($elm$core$Basics$identity);
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$getProp = function (f) {
+	return A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$filterMap(f),
+		$elm$core$List$head);
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$opacity_ = function (p) {
+	if (p.$ === 'Opacity') {
+		var n = p.a;
+		return $elm$core$Maybe$Just(
+			'opacity:' + $elm$core$String$fromFloat(n));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$raw_ = function (p) {
+	if (p.$ === 'Raw') {
+		var k = p.a;
+		var v = p.b;
+		return $elm$core$Maybe$Just(k + (':' + v));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$collectTransforms = A2(
+	$elm$core$List$foldl,
+	F2(
+		function (val, acc) {
+			if (val.$ === 'Transform') {
+				var t = val.a;
+				return A2($elm$core$List$cons, t, acc);
+			} else {
+				return acc;
+			}
+		}),
+	_List_Nil);
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$combine = F2(
+	function (transform, combined) {
+		switch (transform.$) {
+			case 'Rotate':
+				var n = transform.a;
+				return _Utils_update(
+					combined,
+					{
+						rotate: $elm$core$Maybe$Just(n)
+					});
+			case 'ScaleXY':
+				var x_ = transform.a;
+				var y_ = transform.b;
+				return _Utils_update(
+					combined,
+					{
+						scale: $elm$core$Maybe$Just(
+							_Utils_Tuple2(x_, y_))
+					});
+			default:
+				switch (transform.a.$) {
+					case 'XY':
+						var _v1 = transform.a;
+						var x_ = _v1.a;
+						var y_ = _v1.b;
+						return _Utils_update(
+							combined,
+							{
+								xy: $elm$core$Maybe$Just(
+									_Utils_Tuple2(x_, y_))
+							});
+					case 'X':
+						var n = transform.a.a;
+						return _Utils_update(
+							combined,
+							{
+								x: $elm$core$Maybe$Just(n)
+							});
+					default:
+						var n = transform.a.a;
+						return _Utils_update(
+							combined,
+							{
+								y: $elm$core$Maybe$Just(n)
+							});
+				}
+		}
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$empty = {rotate: $elm$core$Maybe$Nothing, scale: $elm$core$Maybe$Nothing, x: $elm$core$Maybe$Nothing, xy: $elm$core$Maybe$Nothing, y: $elm$core$Maybe$Nothing};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$render_ = function (f) {
+	return A2(
+		$elm$core$Basics$composeR,
+		$elm$core$Maybe$map(f),
+		$elm$core$Maybe$withDefault(''));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$deg = function (n) {
+	return $elm$core$String$fromFloat(n) + 'deg';
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$join = $elm$core$String$join('');
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$rotate_ = function (n) {
+	return $andrewMacmurray$elm_simple_animation$Internal$Transform$join(
+		_List_fromArray(
+			[
+				'rotate(',
+				$andrewMacmurray$elm_simple_animation$Internal$Transform$deg(n),
+				')'
+			]));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$scale_ = function (_v0) {
+	var x_ = _v0.a;
+	var y_ = _v0.b;
+	return $andrewMacmurray$elm_simple_animation$Internal$Transform$join(
+		_List_fromArray(
+			[
+				'scale(',
+				$elm$core$String$fromFloat(x_),
+				',',
+				$elm$core$String$fromFloat(y_),
+				')'
+			]));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$px = function (n) {
+	return $elm$core$String$fromFloat(n) + 'px';
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$translateX_ = function (n) {
+	return $andrewMacmurray$elm_simple_animation$Internal$Transform$join(
+		_List_fromArray(
+			[
+				'translateX(',
+				$andrewMacmurray$elm_simple_animation$Internal$Transform$px(n),
+				')'
+			]));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$translateY_ = function (n) {
+	return $andrewMacmurray$elm_simple_animation$Internal$Transform$join(
+		_List_fromArray(
+			[
+				'translateY(',
+				$andrewMacmurray$elm_simple_animation$Internal$Transform$px(n),
+				')'
+			]));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$translate_ = function (_v0) {
+	var x_ = _v0.a;
+	var y_ = _v0.b;
+	return $andrewMacmurray$elm_simple_animation$Internal$Transform$join(
+		_List_fromArray(
+			[
+				'translate(',
+				$andrewMacmurray$elm_simple_animation$Internal$Transform$px(x_),
+				',',
+				$andrewMacmurray$elm_simple_animation$Internal$Transform$px(y_),
+				')'
+			]));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$render = function (combined) {
+	return A2(
+		$elm$core$String$join,
+		' ',
+		A2(
+			$elm$core$List$filter,
+			A2($elm$core$Basics$composeR, $elm$core$String$isEmpty, $elm$core$Basics$not),
+			_List_fromArray(
+				[
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translate_, combined.xy),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translateX_, combined.x),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translateY_, combined.y),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$scale_, combined.scale),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$rotate_, combined.rotate)
+				])));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$toString = A2(
+	$elm$core$Basics$composeR,
+	A2($elm$core$List$foldl, $andrewMacmurray$elm_simple_animation$Internal$Transform$combine, $andrewMacmurray$elm_simple_animation$Internal$Transform$empty),
+	$andrewMacmurray$elm_simple_animation$Internal$Transform$render);
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$transform_ = function (props) {
+	var _v0 = $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$collectTransforms(props);
+	if (!_v0.b) {
+		return $elm$core$Maybe$Nothing;
+	} else {
+		var transforms = _v0;
+		return $elm$core$Maybe$Just(
+			'transform:' + $andrewMacmurray$elm_simple_animation$Internal$Transform$toString(transforms));
+	}
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$render = function (props) {
+	return A2(
+		$elm$core$String$join,
+		';',
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$Property$filterMaybes(
+			$elm$core$List$concat(
+				_List_fromArray(
+					[
+						A2($elm$core$List$map, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$raw_, props),
+						_List_fromArray(
+						[
+							A2($andrewMacmurray$elm_simple_animation$Internal$Animation$Property$getProp, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$opacity_, props),
+							$andrewMacmurray$elm_simple_animation$Internal$Animation$Property$transform_(props)
+						])
+					]))));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderFrame = function (_v0) {
+	var percent = _v0.a;
+	var properties = _v0.b;
+	return $andrewMacmurray$elm_simple_animation$Internal$Unit$pc(percent) + ('{' + ($andrewMacmurray$elm_simple_animation$Internal$Animation$Property$render(properties) + ';}'));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$keyframes_ = A2(
+	$elm$core$Basics$composeR,
+	$andrewMacmurray$elm_simple_animation$Internal$Animation$frames_,
+	A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$map($andrewMacmurray$elm_simple_animation$Internal$Animation$renderFrame),
+		$elm$core$String$join('\n')));
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$keyframesAnimation_ = function (anim) {
+	return '@keyframes ' + ($andrewMacmurray$elm_simple_animation$Internal$Animation$name_(anim) + ('{' + ($andrewMacmurray$elm_simple_animation$Internal$Animation$keyframes_(anim) + '}')));
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$stylesheet_ = function (anim) {
+	return $andrewMacmurray$elm_simple_animation$Internal$Animation$keyframesAnimation_(anim) + ('\n' + $andrewMacmurray$elm_simple_animation$Internal$Animation$classDefinition_(anim));
+};
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$toStylesheet_ = function (anim) {
+	return A3(
+		$elm$html$Html$node,
+		'style',
+		_List_Nil,
+		_List_fromArray(
+			[
+				$elm$html$Html$text(
+				$andrewMacmurray$elm_simple_animation$Internal$Animation$stylesheet_(anim))
+			]));
+};
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$node = F5(
+	function (options, node_, anim, attrs, els) {
+		return A2(
+			node_,
+			A2(
+				$elm$core$List$cons,
+				options._class(
+					$andrewMacmurray$elm_simple_animation$Internal$Animation$name_(anim)),
+				attrs),
+			A2(
+				$elm$core$List$cons,
+				$andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$toStylesheet_(anim),
+				els));
+	});
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$node;
+var $author$project$Arai3$animatedSvg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg(
+	{_class: $elm$svg$Svg$Attributes$class});
+var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
+var $author$project$Arai3$animatedG = $author$project$Arai3$animatedSvg($elm$svg$Svg$g);
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Stepped = function (a) {
+	return {$: 'Stepped', a: a};
+};
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Step = F2(
+	function (a, b) {
+		return {$: 'Step', a: a, b: b};
+	});
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$step = $andrewMacmurray$elm_simple_animation$Simple$Animation$Step;
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Animation = F3(
+	function (a, b, c) {
+		return {$: 'Animation', a: a, b: b, c: c};
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Frame = F2(
+	function (a, b) {
+		return {$: 'Frame', a: a, b: b};
+	});
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$duration = $andrewMacmurray$elm_simple_animation$Internal$Animation$duration_;
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$adjustCompleteWait = F2(
+	function (anim, timePassed) {
+		var duration_ = $andrewMacmurray$elm_simple_animation$Simple$Animation$duration(anim);
+		return ((duration_ - timePassed) >= 1) ? duration_ : (timePassed + 1);
+	});
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$frameProps = function (_v0) {
+	var props = _v0.b;
+	return props;
+};
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$accumDuration = F2(
+	function (step_, curr) {
+		switch (step_.$) {
+			case 'Step':
+				var d = step_.a;
+				return d + curr;
+			case 'Wait':
+				var d = step_.a;
+				return d + curr;
+			default:
+				var anim = step_.a;
+				return A2($andrewMacmurray$elm_simple_animation$Simple$Animation$adjustCompleteWait, anim, curr);
+		}
+	});
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$totalDuration = A2($elm$core$List$foldl, $andrewMacmurray$elm_simple_animation$Simple$Animation$accumDuration, 0);
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$toFrames = F2(
+	function (firstFrame, steps_) {
+		var percentPerMs = 100 / $andrewMacmurray$elm_simple_animation$Simple$Animation$totalDuration(steps_);
+		var getFrame = F2(
+			function (f, _v2) {
+				var n = _v2.a;
+				var xs = _v2.b;
+				var cur = _v2.c;
+				switch (f.$) {
+					case 'Step':
+						var d = f.a;
+						var props = f.b;
+						return _Utils_Tuple3(
+							n + d,
+							_Utils_ap(
+								xs,
+								_List_fromArray(
+									[cur])),
+							A2($andrewMacmurray$elm_simple_animation$Internal$Animation$Frame, percentPerMs * (n + d), props));
+					case 'Wait':
+						var d = f.a;
+						return _Utils_Tuple3(
+							n + d,
+							_Utils_ap(
+								xs,
+								_List_fromArray(
+									[cur])),
+							A2(
+								$andrewMacmurray$elm_simple_animation$Internal$Animation$Frame,
+								percentPerMs * (n + d),
+								$andrewMacmurray$elm_simple_animation$Simple$Animation$frameProps(cur)));
+					default:
+						var d = f.a;
+						var dur = A2($andrewMacmurray$elm_simple_animation$Simple$Animation$adjustCompleteWait, d, n);
+						return _Utils_Tuple3(
+							dur,
+							_Utils_ap(
+								xs,
+								_List_fromArray(
+									[cur])),
+							A2(
+								$andrewMacmurray$elm_simple_animation$Internal$Animation$Frame,
+								percentPerMs * dur,
+								$andrewMacmurray$elm_simple_animation$Simple$Animation$frameProps(cur)));
+				}
+			});
+		return function (_v0) {
+			var xs = _v0.b;
+			var curr = _v0.c;
+			return _Utils_ap(
+				xs,
+				_List_fromArray(
+					[curr]));
+		}(
+			A3(
+				$elm$core$List$foldl,
+				getFrame,
+				_Utils_Tuple3(
+					0,
+					_List_Nil,
+					A2($andrewMacmurray$elm_simple_animation$Internal$Animation$Frame, 0, firstFrame)),
+				steps_));
+	});
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$toAnimation = function (_v0) {
+	var s = _v0.a;
+	return A3(
+		$andrewMacmurray$elm_simple_animation$Internal$Animation$Animation,
+		$andrewMacmurray$elm_simple_animation$Simple$Animation$totalDuration(s.steps),
+		s.options,
+		A2($andrewMacmurray$elm_simple_animation$Simple$Animation$toFrames, s.startAt, s.steps));
+};
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$fromTo = F3(
+	function (o, from_, to_) {
+		return $andrewMacmurray$elm_simple_animation$Simple$Animation$toAnimation(
+			$andrewMacmurray$elm_simple_animation$Simple$Animation$Stepped(
+				{
+					options: o.options,
+					startAt: from_,
+					steps: _List_fromArray(
+						[
+							A2($andrewMacmurray$elm_simple_animation$Simple$Animation$step, o.duration, to_)
+						])
+				}));
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Opacity = function (a) {
+	return {$: 'Opacity', a: a};
+};
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$opacity = $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Opacity;
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform = function (a) {
+	return {$: 'Transform', a: a};
+};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate = function (a) {
+	return {$: 'Translate', a: a};
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$X = function (a) {
+	return {$: 'X', a: a};
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$x = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate, $andrewMacmurray$elm_simple_animation$Internal$Transform$X);
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$x = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform, $andrewMacmurray$elm_simple_animation$Internal$Transform$x);
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$Y = function (a) {
+	return {$: 'Y', a: a};
+};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate, $andrewMacmurray$elm_simple_animation$Internal$Transform$Y);
+var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform, $andrewMacmurray$elm_simple_animation$Internal$Transform$y);
+var $author$project$Arai3$fadeOut = F4(
+	function (x, y, oldx, oldy) {
+		return A3(
+			$andrewMacmurray$elm_simple_animation$Simple$Animation$fromTo,
+			{duration: 1000, options: _List_Nil},
+			_List_fromArray(
+				[
+					$andrewMacmurray$elm_simple_animation$Simple$Animation$Property$opacity(0),
+					$andrewMacmurray$elm_simple_animation$Simple$Animation$Property$x(oldx * 50),
+					$andrewMacmurray$elm_simple_animation$Simple$Animation$Property$y(oldy * 50)
+				]),
+			_List_fromArray(
+				[
+					$andrewMacmurray$elm_simple_animation$Simple$Animation$Property$opacity(1),
+					$andrewMacmurray$elm_simple_animation$Simple$Animation$Property$x(x * 50),
+					$andrewMacmurray$elm_simple_animation$Simple$Animation$Property$y(y * 50)
+				]));
+	});
+var $elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
+var $elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
 var $elm$svg$Svg$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$svg$Svg$text_ = $elm$svg$Svg$trustedNode('text');
-var $author$project$Arai2$panel = function (digit) {
+var $author$project$Arai3$panel = function (digit) {
 	var color = function () {
 		var _v0 = digit.d;
 		switch (_v0) {
@@ -6069,8 +7021,9 @@ var $author$project$Arai2$panel = function (digit) {
 				return '#fff';
 		}
 	}();
-	return A2(
-		$elm$svg$Svg$g,
+	return A3(
+		$author$project$Arai3$animatedG,
+		A4($author$project$Arai3$fadeOut, digit.x, digit.y, digit.oldx, digit.oldy),
 		_List_Nil,
 		_List_fromArray(
 			[
@@ -6078,10 +7031,8 @@ var $author$project$Arai2$panel = function (digit) {
 				$elm$svg$Svg$rect,
 				_List_fromArray(
 					[
-						$elm$svg$Svg$Attributes$x(
-						$elm$core$String$fromInt(digit.x * 50)),
-						$elm$svg$Svg$Attributes$y(
-						$elm$core$String$fromInt(digit.y * 50)),
+						$elm$svg$Svg$Attributes$x('0'),
+						$elm$svg$Svg$Attributes$y('0'),
 						$elm$svg$Svg$Attributes$fill(color),
 						$elm$svg$Svg$Attributes$fillOpacity('0.5'),
 						$elm$svg$Svg$Attributes$width('50'),
@@ -6094,10 +7045,8 @@ var $author$project$Arai2$panel = function (digit) {
 				$elm$svg$Svg$text_,
 				_List_fromArray(
 					[
-						$elm$svg$Svg$Attributes$x(
-						$elm$core$String$fromInt((digit.x * 50) + 25)),
-						$elm$svg$Svg$Attributes$y(
-						$elm$core$String$fromInt((digit.y * 50) + 25))
+						$elm$svg$Svg$Attributes$x('20'),
+						$elm$svg$Svg$Attributes$y('30')
 					]),
 				_List_fromArray(
 					[
@@ -6107,8 +7056,7 @@ var $author$project$Arai2$panel = function (digit) {
 			]));
 };
 var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$Arai2$view = function (model) {
+var $author$project$Arai3$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -6120,13 +7068,13 @@ var $author$project$Arai2$view = function (model) {
 					[
 						$elm$svg$Svg$Attributes$width('600'),
 						$elm$svg$Svg$Attributes$height('600'),
-						$author$project$Arai2$myOnDown(
+						$author$project$Arai3$myOnDown(
 						function (event) {
-							return $author$project$Arai2$PDown(event);
+							return $author$project$Arai3$PDown(event);
 						}),
 						$mpizenberg$elm_pointer_events$Html$Events$Extra$Pointer$onUp(
 						function (event) {
-							return $author$project$Arai2$PUp(event);
+							return $author$project$Arai3$PUp(event);
 						})
 					]),
 				$elm$core$List$concat(
@@ -6154,24 +7102,24 @@ var $author$project$Arai2$view = function (model) {
 									return A2(
 										$elm$core$List$map,
 										function (y) {
-											return $author$project$Arai2$cell(
+											return $author$project$Arai3$cell(
 												{x: x, y: y});
 										},
 										A2($elm$core$List$range, 0, 3));
 								},
 								A2($elm$core$List$range, 0, 3))),
-							A2($elm$core$List$map, $author$project$Arai2$panel, model.conf)
+							A2($elm$core$List$map, $author$project$Arai3$panel, model.conf)
 						]))),
 				$elm$html$Html$text(
 				$elm$core$String$fromFloat(model.startAt.x) + (',' + $elm$core$String$fromFloat(model.startAt.y)))
 			]));
 };
-var $author$project$Arai2$main = $elm$browser$Browser$element(
-	{init: $author$project$Arai2$init, subscriptions: $author$project$Arai2$subscriptions, update: $author$project$Arai2$update, view: $author$project$Arai2$view});
-_Platform_export({'Arai2':{'init':$author$project$Arai2$main(
+var $author$project$Arai3$main = $elm$browser$Browser$element(
+	{init: $author$project$Arai3$init, subscriptions: $author$project$Arai3$subscriptions, update: $author$project$Arai3$update, view: $author$project$Arai3$view});
+_Platform_export({'Arai3':{'init':$author$project$Arai3$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.Arai2.init({ node: document.getElementById("elm") });
+  var app = Elm.Arai3.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {
